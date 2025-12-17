@@ -43,7 +43,7 @@ pipeline {
 
         stage('Push Docker Image to DockerHub') {
             steps {
-                sh 'docker push Rajavardhanrg30/ci-app:1'
+                sh 'docker push rajavardhanrg30/ci-app:1'
             }
         }
 
