@@ -27,6 +27,26 @@ pipeline {
             }
         }
 
+        stage('Login to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-credentials',
+                    usernameVariable: 'DOCKER_USERNAME',
+                    passwordVariable: 'DOCKER_PASSWORD'
+                )]) {
+                    sh '''
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Push Docker Image to DockerHub') {
+            steps {
+                sh 'docker push Rajavardhanrg/ci-app:1'
+            }
+        }
+
         stage('Run Container') {
             steps {
                 sh '''
