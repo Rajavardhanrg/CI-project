@@ -23,7 +23,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t Rajavardhanrg/ci-app:1 .'
+                sh 'docker build -t rajavardhanrg30/ci-app:1 .'
             }
         }
 
@@ -52,7 +52,7 @@ pipeline {
                 sh '''
                 docker stop c1 || true
                 docker rm c1 || true
-                docker run -d --name c1 -p 9000:8080 Rajavardhanrg/ci-app:1
+                docker run -d --name c1 -p 9000:8080 rajavardhanrg30/ci-app:1
                 '''
             }
         }
